@@ -17,21 +17,31 @@ def palindrome_checker(s):
         "hello" -> No
     - Empty string or non-string input -> "input invalid"
     """
-    if not isinstance(s, str) or len(s) == 0:
+
+    # check invalid input
+    if not isinstance(s, str) or s == "":
         return "input invalid"
 
-    # Count character frequencies
+    # count characters
     freq = {}
     for ch in s:
-        freq[ch] = freq.get(ch, 0) + 1
+        if ch in freq:
+            freq[ch] += 1
+        else:
+            freq[ch] = 1
 
-    # Count how many characters have odd frequency
-    odd_count = sum(1 for count in freq.values() if count % 2 == 1)
+    # count how many characters appear odd number of times
+    odd_count = 0
+    for count in freq.values():
+        if count % 2 == 1:
+            odd_count += 1
 
+    # at most one odd allowed
     if odd_count <= 1:
         return "Yes"
     else:
         return "No"
+
 
 
 # Q11: String Rotation Validator
