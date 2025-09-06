@@ -18,25 +18,15 @@ def palindrome_checker(s):
     - Empty string or non-string input -> "input invalid"
     """
 
-     # invalid input
-    if type(s) != str or s == "":
+    #check valid input
+    if not isinstance(s, str) or s == "":
         return "input invalid"
 
-    # make a frequency dictionary
-    freq = {}
-    for ch in s:
-        if ch not in freq:
-            freq[ch] = 1
-        else:
-            freq[ch] = freq[ch] + 1
-
-    # check how many characters have odd frequency
     odd_count = 0
-    for ch in freq:
-        if freq[ch] % 2 != 0:
-            odd_count = odd_count + 1
+    for ch in set(s):   # check each unique character
+        if s.count(ch) % 2 != 0:
+            odd_count += 1
 
-    # rule: at most one odd allowed
     if odd_count <= 1:
         return "Yes"
     else:
