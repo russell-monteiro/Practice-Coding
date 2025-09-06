@@ -56,5 +56,6 @@ echo ""
 # Q6
 echo "Q6:"
 # Find all files modified in last 24 hours in current directory (non-recursive)
-ls -lt --time-style=+%s | awk -v now=$(date +%s) '$6 >= now-86400 {print $7}'
+find . -maxdepth 1 -type f -mtime -1 -printf "%f\n"
+
 
